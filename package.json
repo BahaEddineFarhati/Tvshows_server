@@ -1,0 +1,19 @@
+{
+  "name": "tvshows_server",
+  "version": "1.0.0",
+  "description": "a web site to save your tv shows progress",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BahaEddineFarhati/Tvshows_server.git"
+  },
+  "author": "Baha Farhati",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BahaEddineFarhati/Tvshows_server/issues"
+  },
+  "homepage": "https://github.com/BahaEddineFarhati/Tvshows_server#readme"
+}
