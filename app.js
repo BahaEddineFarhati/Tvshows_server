@@ -45,10 +45,13 @@ let query="game of thrones";
 
     fetch(url, options)
     .then(res => res.json())
-    .then(json => res.status(200).send(json))
+    .then(data => {
+        rep = data.results[0];
+        res.send(rep);
+    })
     .catch(err => console.error('error:' + err));
 
-
+    
   });
 
 
