@@ -12,13 +12,9 @@ const port = 3000;
   });
 
   
-  app.get('/api/search/:name' ,search_name, (req, res) => {
-  });
+  app.get('/api/search/:name' ,search_name);
 
-app.get('/api/user_shows/:list',search_id, (req, res) => {
-  
-
-});
+app.get('/api/user_shows/:list',search_id);
 
 
   app.listen(port, () => {

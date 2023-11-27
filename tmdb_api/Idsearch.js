@@ -27,7 +27,7 @@ const search_id = (req, res, next) => {
 
   Promise.all(fetchPromises)
     .then(() => {
-      res.send(result);
+      res.status(200).json({result});
     })
     .catch(error => {
       console.error('Error:', error);

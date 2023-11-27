@@ -3,9 +3,8 @@ const fetch = require('node-fetch');
 const search_name = (req, res , next) => {
 
 
-query = req.params.name;
-
-const url = 'https://api.themoviedb.org/3/search/tv?query='+query;
+const { name } = req.params;
+const url = 'https://api.themoviedb.org/3/search/tv?query='+name;
 
     const options = {
         method: 'GET',
@@ -20,7 +19,7 @@ const url = 'https://api.themoviedb.org/3/search/tv?query='+query;
     .then(data => data.json())
     .then(data => {
         rep = data.results.slice(0,3);
-        res.send(rep);
+        res.status(200).json({rep});
     })
     .catch(err => console.error('error:' + err));
 
