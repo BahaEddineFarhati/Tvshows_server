@@ -4,8 +4,6 @@ const search_id = (req, res, next) => {
   const query = req.params.list;
   const id_list = query.split("@");
   let result = {};
-  console.log(id_list);
-
   const fetchPromises = id_list.map((id) => {
     const urlid = 'https://api.themoviedb.org/3/tv/' + id + '?language=en-US';
 
