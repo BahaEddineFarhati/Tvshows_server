@@ -1,10 +1,11 @@
 const express = require('express');
 const search_id = require('./tmdb_api/Idsearch.js');
 const search_name = require('./tmdb_api/name_search.js');
-const getSeries = require('./firebase.js')
+const check_user = require('./firebase.js')
 
 
 const app = express();
+app.use(express.json())
 const port = 3000;
 
 
@@ -19,24 +20,7 @@ app.get('/api/user_shows/:list',search_id);
 
 
 
-app.post('/api/login', async (req, res) => {
-  const { email, password } = req.body;
-
-  // Add your authentication logic here (e.g., check against your database)
-  if (email && password) {
-    try {
-      const user = await getSeries({ email, password });
-      console.log(user);
-      res.status(200).send(user);
-    } catch (error) {
-      console.error(error);
-      res.status(404).send("User not found");
-    }
-  } else {
-    res.status(400).json({ message: 'Email and password are required' });
-  }
-});
-
+app.post('/api/login', check_user );
 
   app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

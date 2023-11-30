@@ -41,32 +41,34 @@ async function getUsers(db) {
 
 
 
-  const getSeries = (req) => {
-    return new Promise((resolve, reject) => {
-      let tv_shows = "";
+  const getSeries = (req, res) => {
+    const { email, password } = req.body;
+    console.log({ email, password });
   
-      getUsers(db).then((users) => {
-        const foundUser = users.find((user) => {
-          if (user.mail === req.email) {
-            if (user.password === req.password) {
-              console.log("User found");
-              return true;
+    getUsers(db)
+      .then(users => {
+        const foundUser = users.find(user => {
+          if (user.mail === email) {
+            if (user.password === password) {
+              res.status(200).send("Authentication successful");
             } else {
-              console.log("Wrong password");
+              res.status(401).send("Incorrect password");
             }
+            return true; // Found the user
           }
-          return false;
+          return false; // Continue searching
         });
   
-        if (foundUser) {
-          resolve(true);
-        } else {
-          console.log("User not found");
-          reject("User not found");
+        if (!foundUser) {
+          res.status(404).send("User not found");
         }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        res.status(500).send("Internal Server Error");
       });
-    });
   };
+  
   
   module.exports = getSeries;
 
